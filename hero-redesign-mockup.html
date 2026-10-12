@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ace Designs — Hero Redesign Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #27063B;
+    --purple-deep: #1C042B;
+    --black: #111111;
+    --white: #FFFFFF;
+    --lilac: #E2D6ED;
+    --lilac-text: #BDA8CF;
+    --line-dark: rgba(255,255,255,0.08);
+  }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    padding: 60px 40px;
+    flex-wrap: wrap;
+  }
+  .label {
+    width: 100%;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .comparison {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .phone-label {
+    color: #aaa;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .phone-label .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .tag-before { background: #7c2d12; color: #fbbf24; }
+  .tag-after { background: #14532d; color: #4ade80; }
+  .phone-frame {
+    width: 480px;
+    background: var(--purple);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 6px solid #1a1a1a;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  
+  /* ===== BEFORE (current) ===== */
+  .before .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .before .brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .before .brand-icon {
+    width: 36px; height: 36px;
+    background: rgba(226,214,237,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--lilac);
+  }
+  .before .nav-links {
+    display: flex;
+    gap: 36px;
+    font-size: 14px;
+  }
+  .before .nav-links a { color: var(--lilac-text); text-decoration: none; }
+  .before .nav-cta {
+    padding: 12px 24px;
+    border-radius: 16px;
+    background: var(--white);
+    color: var(--purple);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .before .hero {
+    padding: 20px 32px 40px;
+  }
+  .before .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 37px;
+    align-items: center;
+  }
+  .before .eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lilac-text);
+    font-weight: 500;
+    display: block;
+  }
+  .before h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 52px;
+    line-height: .9;
+    letter-spacing: -2px;
+    margin-top: 8px;
+  }
+  .before h1 em { font-style: italic; font-weight: 400; }
+  .before .tagline {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--lilac-text);
+    margin: 14px 0 21px;
+    max-width: 440px;
+  }
+  .before .btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .before .btn {
+    padding: 13px 24px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .before .btn-primary { background: var(--white); color: var(--purple); }
+  .before .btn-outline { border: 1px solid var(--lilac-text); color: var(--white); }
+  .before .frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3/4;
+    border: 1px solid rgba(226,214,237,0.25);
+    border-radius: 52% 52% 8px 8px;
+    transform: rotate(8deg);
+    position: relative;
+  }
+  .before .frame::before {
+    content: '✦';
+    position: absolute;
+    top: 18px; right: 18px;
+    color: var(--lilac);
+    font-size: 22px;
+  }
+  .before .frame-inner {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 72px;
+    color: var(--lilac);
+    transform: rotate(-8deg);
+  }
+  .before .black-bar {
+    background: var(--black);
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .before .black-bar .left {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  .before .black-bar .right {
+    font-size: 13px;
+    color: var(--lilac-text);
+  }
+  .before .issues {
+    margin-top: 20px;
+    padding: 16px;
+    background: #1a0a0a;
+    border-radius: 12px;
+    border: 1px solid #7c2d12;
+  }
+  .before .issues h4 {
+    color: #fbbf24;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .before .issues li {
+    color: #c4c4c4;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    list-style: none;
+    padding-left: 16px;
+    position: relative;
+  }
+  .before .issues li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    color: #ef4444;
+    font-size: 10px;
+  }
+
+  /* ===== AFTER (proposed) ===== */
+  .after .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .after .brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .after .brand-icon {
+    width: 36px; height: 36px;
+    background: rgba(226,214,237,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--lilac);
+  }
+  .after .nav-links {
+    display: flex;
+    gap: 36px;
+    font-size: 14px;
+  }
+  .after .nav-links a { color: var(--lilac-text); text-decoration: none; }
+  .after .nav-cta {
+    padding: 12px 24px;
+    border-radius: 16px;
+    background: var(--white);
+    color: var(--purple);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .after .hero {
+    padding: 32px 32px 48px;
+  }
+  .after .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .after h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 56px;
+    line-height: .9;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+  }
+  .after h1 em { font-style: italic; font-weight: 400; }
+  .after .tagline {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--lilac-text);
+    margin-bottom: 28px;
+    max-width: 420px;
+  }
+  .after .btns {
+    display: flex;
+    gap: 14px;
+  }
+  .after .btn {
+    padding: 13px 28px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .after .btn-primary { background: var(--white); color: var(--purple); }
+  .after .frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3/4;
+    max-width: 200px;
+    transform: rotate(3deg);
+    position: relative;
+    opacity: 0.35;
+    margin-left: auto;
+  }
+  .after .frame-inner {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 120px;
+    color: var(--lilac);
+    line-height: 1;
+  }
+  .after .black-bar {
+    background: var(--black);
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .after .black-bar .left {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  .after .black-bar .right {
+    font-size: 13px;
+    color: var(--lilac-text);
+  }
+  .after .improvements {
+    margin-top: 20px;
+    padding: 16px;
+    background: #0a1a0a;
+    border-radius: 12px;
+    border: 1px solid #14532d;
+  }
+  .after .improvements h4 {
+    color: #4ade80;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .after .improvements li {
+    color: #c4c4c4;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    list-style: none;
+    padding-left: 16px;
+    position: relative;
+  }
+  .after .improvements li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #4ade80;
+    font-size: 10px;
+  }
+  
+  .change-list {
+    max-width: 520px;
+    margin: 20px auto 0;
+    padding: 24px;
+    background: #111;
+    border-radius: 16px;
+    border: 1px solid #222;
+  }
+  .change-list h3 {
+    color: #aaa;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .change-list .change {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+  .change-list .change .num {
+    flex: 0 0 24px;
+    color: #666;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="label">Hero Redesign — Before vs After</div>
+
+<div class="comparison">
+
+  <!-- BEFORE -->
+  <div class="phone-wrap">
+    <div class="phone-label">Current <span class="tag tag-before">BEFORE</span></div>
+    <div class="phone-frame before">
+      <div class="nav">
+        <div class="brand"><div class="brand-icon">A</div>Ace Designs</div>
+        <div class="nav-links">
+          <a>Work</a><a>Services</a><a>About</a>
+        </div>
+        <a class="nav-cta">Start a Project</a>
+      </div>
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Independent design. Distinctive possibilities.</span>
+            <h1>Packaging with <em>presence.</em><br>Products with <em>personality.</em></h1>
+            <p class="tagline">A founder-led design studio for packaging and products that make an impression before the box opens.</p>
+            <div class="btns">
+              <a class="btn btn-primary">Start a Project</a>
+              <a class="btn btn-outline">View Work</a>
+            </div>
+          </div>
+          <div class="frame">
+            <div class="frame-inner">A</div>
+          </div>
+        </div>
+      </div>
+      <div class="black-bar">
+        <span class="left">Unusual ✦ Intimate ✦ Unforgettable</span>
+        <span class="right">Make an impression before the box opens.</span>
+      </div>
+    </div>
+    <div class="issues">
+      <h4>Issues</h4>
+      <li>Eyebrow text is redundant with tagline</li>
+      <li>A-frame competes with headline — two focal points</li>
+      <li>Star ✦ + arch border + 8deg rotation = visual noise</li>
+      <li>Text elements too tightly packed (8/14/21px gaps)</li>
+      <li>Two CTAs dilute the primary action</li>
+      <li>7 elements in one viewport = cognitive overload</li>
+    </div>
+  </div>
+
+  <!-- AFTER -->
+  <div class="phone-wrap">
+    <div class="phone-label">Proposed <span class="tag tag-after">AFTER</span></div>
+    <div class="phone-frame after">
+      <div class="nav">
+        <div class="brand"><div class="brand-icon">A</div>Ace Designs</div>
+        <div class="nav-links">
+          <a>Work</a><a>Services</a><a>About</a>
+        </div>
+        <a class="nav-cta">Start a Project</a>
+      </div>
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <h1>Packaging with <em>presence.</em><br>Products with <em>personality.</em></h1>
+            <p class="tagline">A founder-led design studio for packaging and products that make an impression before the box opens.</p>
+            <div class="btns">
+              <a class="btn btn-primary">Start a Project</a>
+            </div>
+          </div>
+          <div class="frame">
+            <div class="frame-inner">A</div>
+          </div>
+        </div>
+      </div>
+      <div class="black-bar">
+        <span class="left">Unusual ✦ Intimate ✦ Unforgettable</span>
+        <span class="right">Make an impression before the box opens.</span>
+      </div>
+    </div>
+    <div class="improvements">
+      <h4>Fixes</h4>
+      <li>Removed eyebrow — headline + tagline say it all</li>
+      <li>A-frame reduced to 35% opacity — watermark, not focal point</li>
+      <li>Star ✦ removed, rotation reduced to 3deg</li>
+      <li>Breathing room: 20px after h1, 28px before buttons</li>
+      <li>Single CTA — "Start a Project" only</li>
+      <li>5 elements in viewport (down from 7)</li>
+    </div>
+  </div>
+
+</div>
+
+<div class="change-list">
+  <h3>What Changed</h3>
+  <div class="change"><span class="num">1</span><span><strong>Removed eyebrow</strong> — "Independent design. Distinctive possibilities." was redundant with the tagline below it. The h1 + tagline already communicate the value proposition.</span></div>
+  <div class="change"><span class="num">2</span><span><strong>A-frame → watermark</strong> — Opacity reduced to 35%, star ✦ removed, rotation reduced from 8deg to 3deg, border removed. It now reads as a subtle brand mark, not a competing focal point.</span></div>
+  <div class="change"><span class="num">3</span><span><strong>More breathing room</strong> — 20px gap after h1 (was 14px), 28px before buttons (was 21px), 48px grid gap (was 37px). Text elements now feel spacious.</span></div>
+  <div class="change"><span class="num">4</span><span><strong>Single CTA</strong> — Removed "View Work" button. One clear action ("Start a Project") is stronger than two competing ones.</span></div>
+  <div class="change"><span class="num">5</span><span><strong>More vertical padding</strong> — 32px top / 48px bottom (was 20px / 40px). The hero now feels intentional rather than cramped.</span></div>
+</div>
+
+</body>
+</html>

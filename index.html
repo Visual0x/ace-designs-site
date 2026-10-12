@@ -1,0 +1,1532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Ace Designs is a founder-led design firm for distinctive packaging and products.">
+<title>Ace Designs | Packaging & Product Design</title>
+<style>
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/cormorant-garamond-400-normal.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/cormorant-garamond-400-italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-400-normal.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-500-normal.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-600-normal.ttf) format('truetype');
+}
+
+:root {
+  --purple: #27063B;
+  --purple-deep: #1C042B;
+  --black: #111111;
+  --white: #FFFFFF;
+  --lilac: #E2D6ED;
+  --lilac-text: #BDA8CF;
+  --lilac-card: #EDE6F5;
+  --line-dark: rgba(255,255,255,0.08);
+  --line-light: rgba(39,6,59,0.1);
+  --radius: 28px;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--purple);
+  color: var(--white);
+  font-family: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button, input, select, textarea { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; background: none; border: none; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--lilac); color: var(--purple); }
+[hidden] { display: none !important; }
+
+/* Shell */
+.shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px,5vw,80px);
+}
+
+/* Typography */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--lilac-text);
+}
+.serif { font-family: var(--serif); font-weight: 400; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.02; }
+h1 { font-size: clamp(48px,7vw,96px); letter-spacing: -2px; }
+h2 { font-size: clamp(36px,4.5vw,64px); letter-spacing: -1px; }
+em { font-style: italic; }
+
+/* Nav */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand img { width: 44px; height: auto; filter: brightness(0) invert(1); }
+.brand span { font-family: var(--serif); font-size: 22px; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-size: 14px;
+}
+.nav-links a {
+  position: relative;
+  padding: 6px 0;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--lilac); }
+.nav-cta { position: relative !important; padding: 13px 24px !important; border-radius: 16px !important; }
+.nav-cta:hover { color: var(--purple) !important; transform: translateY(-1px); }
+.nav-links a[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--lilac);
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 24px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform .2s, background .2s, border-color .2s;
+}
+.pill:hover { transform: translateY(-1px); }
+.pill.white { background: var(--white); color: var(--purple); }
+.pill.white:hover { background: var(--lilac); }
+.pill.lilac { background: var(--lilac); color: var(--purple); }
+.pill.lilac:hover { background: var(--white); }
+.pill.outline { border: 1px solid var(--line-dark); color: var(--white); }
+.pill.outline:hover { border-color: var(--lilac); color: var(--lilac); }
+.pill.dark { background: var(--black); color: var(--white); }
+.menu-toggle {
+  display: none;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-dark);
+  border-radius: 12px;
+  color: var(--white);
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pages */
+[data-page] { display: none; }
+[data-page].active {
+  display: block;
+  animation: pageIn .35s ease;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Hero */
+.hero { padding: 20px 0 40px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  column-gap: 37px;
+  row-gap: 0;
+  align-items: center;
+}
+.hero-top {
+  grid-column: 1;
+  grid-row: 1;
+}
+.hero-bottom {
+  grid-column: 1;
+  grid-row: 2;
+}
+.hero h1 {
+  font-size: clamp(32px,4.8vw,68px);
+  line-height: .9;
+  letter-spacing: -2px;
+}
+.hero h1 em { font-weight: 400; }
+.hero-tagline {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--lilac-text);
+  max-width: 440px;
+  margin: 14px 0 21px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3/4;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  border: 1px solid rgba(226,214,237,0.25);
+  border-radius: 52% 52% 8px 8px;
+  transform: rotate(8deg);
+  position: relative;
+}
+.hero-frame::before {
+  content: '\2726';
+  position: absolute;
+  top: 18px; right: 18px;
+  color: var(--lilac);
+  font-size: 22px;
+}
+.hero-frame img {
+  width: 50%;
+  filter: brightness(0) invert(1);
+  transform: rotate(-8deg);
+}
+
+/* Black Bar */
+.black-bar { background: var(--black); padding: 24px 0; }
+.black-bar .shell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.black-bar .left { font-family: var(--serif); font-size: clamp(20px,2.4vw,30px); }
+.black-bar .right { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--lilac-text); }
+.star-divider { margin: 0 12px; color: var(--lilac-text); }
+
+/* Sections */
+.section { padding: 80px 0; }
+.section-eyebrow { display: block; margin-bottom: 16px; }
+.section h2 { margin-bottom: 24px; }
+
+/* Brand Section */
+.brand-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.brand-grid .left h2 { margin-bottom: 0; }
+.brand-grid .right p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--lilac-text);
+  margin-bottom: 28px;
+  align-self: center;
+}
+.brand-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.brand-tags .tag {
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(226,214,237,0.12);
+  border: 1px solid rgba(226,214,237,0.2);
+  color: var(--lilac);
+}
+
+/* Carousel */
+.carousel-wrap { position: relative; }
+.carousel-track {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+  overflow: hidden;
+}
+.carousel-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+}
+.carousel-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.carousel-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28,4,43,0.85) 0%, rgba(28,4,43,0.25) 45%, transparent 70%);
+  pointer-events: none;
+}
+.carousel-item.placeholder {
+  background: linear-gradient(135deg, rgba(226,214,237,0.06), rgba(226,214,237,0.02));
+  border: 1px solid var(--line-dark);
+}
+.carousel-item-label {
+  position: absolute;
+  bottom: 16px; left: 18px;
+  font-family: var(--serif);
+  font-size: 22px;
+  z-index: 2;
+  color: var(--white);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+.carousel-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+.carousel-buttons { display: flex; gap: 10px; }
+.carousel-btn {
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  background: var(--lilac);
+  color: var(--purple);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.carousel-btn:hover { background: var(--white); }
+.carousel-btn:disabled { opacity: 0.4; cursor: default; }
+.see-more {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--lilac-text);
+  border-bottom: 1px solid var(--line-dark);
+  padding-bottom: 4px;
+  transition: color .2s, border-color .2s;
+}
+.see-more:hover { color: var(--lilac); border-color: var(--lilac); }
+
+/* Lilac floating cards */
+.lilac-card {
+  background: var(--lilac-card);
+  border-radius: var(--radius);
+  padding: 48px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  color: var(--purple);
+}
+
+/* Featured In */
+.featured-in { padding: 60px 0; }
+.featured-in .lilac-card { padding: 40px 48px; }
+.featured-in h3 {
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  font-family: var(--sans);
+  font-weight: 500;
+  color: var(--purple);
+  opacity: 0.6;
+}
+.featured-logos {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  gap: 24px;
+  align-items: center;
+}
+.featured-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+}
+.featured-logo img {
+  max-height: 44px;
+  width: auto;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+}
+.featured-logo.text {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--purple);
+  opacity: 0.85;
+}
+
+/* Services Accordion */
+.services-accordion { margin-top: 32px; }
+.accordion-item { border-top: 1px solid var(--line-light); }
+.accordion-item:last-child { border-bottom: 1px solid var(--line-light); }
+.accordion-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 56px;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.accordion-header:hover { opacity: 0.7; }
+.accordion-num { font-size: 15px; font-weight: 500; color: var(--purple); opacity: 0.5; }
+.accordion-title { font-family: var(--serif); font-size: 28px; color: var(--purple); font-weight: 400; }
+.accordion-toggle {
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--purple);
+  transition: background .2s, color .2s, transform .3s;
+}
+.accordion-item.open .accordion-toggle {
+  background: var(--purple);
+  color: var(--white);
+  transform: rotate(45deg);
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+}
+.accordion-item.open .accordion-content {
+  max-height: 300px;
+  padding-bottom: 24px;
+}
+.accordion-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--purple);
+  opacity: 0.8;
+  padding-left: 76px;
+  max-width: 620px;
+}
+
+/* CTA */
+.cta { padding: 100px 0; text-align: center; }
+.cta h1 { font-size: clamp(40px,5vw,72px); margin-bottom: 20px; }
+.cta p {
+  font-size: 17px;
+  color: var(--lilac-text);
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Footer */
+.footer { background: var(--purple-deep); padding: 72px 0 32px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 16px; }
+.footer-brand img { width: 48px; filter: brightness(0) invert(1); }
+.footer-brand p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--lilac-text);
+  max-width: 280px;
+}
+.footer-col h4 {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 18px;
+  font-family: var(--sans);
+}
+.footer-col ul { list-style: none; }
+.footer-col li { font-size: 14px; color: var(--lilac-text); margin-bottom: 10px; }
+.footer-col li a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid var(--line-dark);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--lilac-text);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Page Header */
+.page-header { padding: 60px 0 40px; }
+.page-header h1 { font-size: clamp(48px,6vw,84px); margin: 12px 0 20px; }
+.page-header p {
+  font-size: 17px;
+  color: var(--lilac-text);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+/* Work Page */
+.filter-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+.filter-pill {
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--line-dark);
+  color: var(--lilac-text);
+  transition: all .2s;
+}
+.filter-pill:hover, .filter-pill.active {
+  background: var(--lilac);
+  color: var(--purple);
+  border-color: var(--lilac);
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 28px;
+  padding-bottom: 80px;
+}
+.work-card { border-radius: var(--radius); overflow: hidden; background: var(--purple-deep); }
+.work-card-img {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, rgba(226,214,237,0.06), rgba(226,214,237,0.02));
+  border-bottom: 1px solid var(--line-dark);
+}
+.work-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.work-card-body { padding: 24px; }
+.work-card-cat {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--lilac-text);
+  margin-bottom: 10px;
+}
+.work-card-title { font-family: var(--serif); font-size: 26px; margin-bottom: 8px; }
+.work-card-desc { font-size: 14px; color: var(--lilac-text); line-height: 1.5; }
+
+/* Case Study */
+.case-hero { padding: 60px 0 48px; }
+.case-hero h1 { font-size: clamp(48px,6vw,88px); margin: 14px 0 24px; }
+.case-meta { display: flex; gap: 40px; flex-wrap: wrap; }
+.case-meta-item { font-size: 14px; }
+.case-meta-item .label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--lilac-text);
+  display: block;
+  margin-bottom: 4px;
+}
+.case-meta-item .val { font-family: var(--serif); font-size: 20px; }
+.case-img-block {
+  aspect-ratio: 16/9;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(226,214,237,0.06), rgba(226,214,237,0.02));
+  border: 1px solid var(--line-dark);
+  margin: 40px 0;
+}
+.case-section { padding: 48px 0; border-top: 1px solid var(--line-dark); }
+.case-section h2 { font-size: clamp(28px,3.5vw,44px); margin-bottom: 20px; }
+.case-section p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--lilac-text);
+  max-width: 760px;
+}
+.case-credits { padding: 48px 0; border-top: 1px solid var(--line-dark); }
+.case-credits h2 { margin-bottom: 24px; }
+.credits-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.credit-row { font-size: 15px; }
+.credit-row .label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--lilac-text);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Services Page */
+.services-page .lilac-card { margin: 40px 0; }
+
+/* About */
+.about-section { padding: 60px 0; }
+.about-opening { padding: 60px 0 48px; }
+.about-opening h1 { font-size: clamp(48px,6vw,88px); margin-top: 12px; }
+.about-card { margin: 32px 0; }
+.about-card .eyebrow { display: block; margin-bottom: 20px; }
+.about-card h2 { margin-bottom: 24px; color: var(--purple); }
+.about-card p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--purple);
+  opacity: 0.85;
+}
+.principles-scroll {
+  max-height: 480px;
+  overflow-y: auto;
+  margin-top: 32px;
+  padding-right: 16px;
+}
+.principles-scroll::-webkit-scrollbar { width: 6px; }
+.principles-scroll::-webkit-scrollbar-track { background: transparent; }
+.principles-scroll::-webkit-scrollbar-thumb {
+  background: var(--line-light);
+  border-radius: 999px;
+}
+.principle-card {
+  background: var(--lilac-card);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 16px;
+  color: var(--purple);
+}
+.principle-num { font-size: 13px; font-weight: 600; color: var(--purple); opacity: 0.5; margin-bottom: 8px; }
+.principle-title { font-family: var(--serif); font-size: 24px; margin-bottom: 8px; }
+.principle-desc { font-size: 15px; line-height: 1.6; color: var(--purple); opacity: 0.75; }
+
+/* Contact Form */
+.contact-form { max-width: 760px; padding: 40px 0 80px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.form-field.full { grid-column: 1/-1; }
+.form-field label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--lilac-text);
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(226,214,237,0.25);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--white);
+  font-size: 15px;
+  transition: border-color .2s, background .2s;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(226,214,237,0.5);
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--lilac);
+  background: rgba(255,255,255,0.1);
+}
+.form-field select option { background: var(--purple-deep); }
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-submit { margin-top: 8px; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .brand-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .featured-logos { grid-template-columns: repeat(3,1fr); gap: 24px; }
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 88px;
+    left: 24px; right: 24px;
+    background: var(--purple-deep);
+    border: 1px solid var(--line-dark);
+    border-radius: 20px;
+    padding: 24px;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 100;
+  }
+  .nav-links.open { display: flex; }
+  .menu-toggle { display: flex; }
+  .nav-cta { display: inline-flex !important; }
+  .sticky-nav .s-nav-links { display: none; }
+  .sticky-nav .menu-toggle { display: flex; }
+  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero-top { grid-column: 1; grid-row: 1; }
+  .hero-frame { grid-column: 1; grid-row: 2; max-width: 220px; margin: 0 auto; }
+  .hero-bottom { grid-column: 1; grid-row: 3; }
+  .hero h1 { font-size: 36px; }
+  .black-bar .shell { flex-direction: column; gap: 12px; text-align: center; }
+  .carousel-track {
+    grid-template-columns: repeat(5, 85%);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-item { scroll-snap-align: start; }
+  .accordion-title { font-size: 20px; }
+  .work-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .work-card-body { padding: 16px; }
+  .work-card-title { font-size: 18px; }
+  .work-card-desc { font-size: 12px; }
+  .form-grid { grid-template-columns: 1fr; gap: 0; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+  .footer { padding: 48px 0 24px; }
+  .footer-brand p { font-size: 13px; }
+  .featured-logos { grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .credits-list { grid-template-columns: 1fr; }
+  .lilac-card { padding: 32px; text-align: left; }
+  .about-card p { font-size: 14px; line-height: 1.6; }
+  .about-card h2 { font-size: 24px; margin-bottom: 16px; }
+  .section { padding: 64px 0; }
+  .accordion-content p { padding-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-page].active { animation: none; }
+  .pill, .accordion-toggle, .filter-pill, .see-more { transition: none; }
+}
+/* Sticky nav on hover when scrolled */
+.sticky-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(28,4,43,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line-dark);
+  transform: translateY(-100%);
+  transition: transform .35s cubic-bezier(.22,1,.36,1);
+  padding: 16px 0;
+}
+.sticky-nav .shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.sticky-nav .brand { display: flex; align-items: center; gap: 14px; }
+.sticky-nav .brand img { width: 36px; height: auto; filter: brightness(0) invert(1); }
+.sticky-nav .brand span { font-family: var(--serif); font-size: 20px; }
+.sticky-nav .s-nav-links { display: flex; align-items: center; gap: 32px; font-size: 14px; }
+.sticky-nav .s-nav-links a { color: var(--white); transition: color .2s; }
+.sticky-nav .s-nav-links a:hover { color: var(--lilac); }
+.sticky-nav:hover { transform: translateY(0); }
+.sticky-nav.triggered { transform: translateY(0); }
+#hoverZone {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 8px;
+  z-index: 199;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div id="hoverZone"></div>
+<div class="sticky-nav" id="stickyNav">
+  <div class="shell">
+    <a class="brand" href="#" onclick="navigate('home');return false;">
+      <img src="assets/logo/ace-logo.png" alt="Ace Designs">
+      <span>Ace Designs</span>
+    </a>
+    <nav class="s-nav-links">
+      <a href="#" onclick="navigate('work');return false;">Work</a>
+      <a href="#" onclick="navigate('services');return false;">Services</a>
+      <a href="#" onclick="navigate('about');return false;">About</a>
+      <a class="pill white nav-cta" href="#" onclick="navigate('contact');return false;">Start a Project</a>
+    </nav>
+    <button class="menu-toggle" id="stickyMenuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </div>
+</div>
+<div class="shell">
+  <!-- ====== NAV ====== -->
+  <header class="nav">
+    <a class="brand" href="#" onclick="navigate('home');return false;">
+      <img src="assets/logo/ace-logo.png" alt="Ace Designs">
+      <span>Ace Designs</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#" onclick="navigate('work');return false;">Work</a>
+      <a href="#" onclick="navigate('services');return false;">Services</a>
+      <a href="#" onclick="navigate('about');return false;">About</a>
+      <a class="pill white nav-cta" href="#" onclick="navigate('contact');return false;">Start a Project</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+  </header>
+</div>
+
+<main id="main">
+
+<!-- ====================== HOME ====================== -->
+<div data-page="home" class="active">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="shell">
+      <div class="hero-grid">
+        <div class="hero-top">
+          <span class="eyebrow">Independent design. Distinctive possibilities.</span>
+          <h1 style="margin-top:8px;">Packaging with <em>presence.</em><br>Products with <em>personality.</em></h1>
+        </div>
+        <div class="hero-frame">
+          <img src="assets/logo/ace-monogram.png" alt="Ace monogram">
+        </div>
+        <div class="hero-bottom">
+          <p class="hero-tagline">A founder-led design studio for packaging and products that make an impression before the box opens.</p>
+          <div class="hero-btns">
+            <a class="pill white" href="#" onclick="navigate('contact');return false;">Start a Project</a>
+            <a class="pill outline" href="#" onclick="navigate('work');return false;">View Work</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Black Bar -->
+  <section class="black-bar">
+    <div class="shell">
+      <span class="left">Unusual <span class="star-divider">&#10022;</span> Intimate <span class="star-divider">&#10022;</span> Unforgettable</span>
+      <span class="right">Make an impression before the box opens.</span>
+    </div>
+  </section>
+
+  <!-- Brand Section -->
+  <section class="section">
+    <div class="shell">
+      <div class="brand-grid">
+        <div class="left">
+          <span class="eyebrow section-eyebrow">01 / Brand</span>
+          <h2>Design that earns attention.</h2>
+        </div>
+        <div class="right">
+          <p>Ace Designs is a studio for packaging and product design with a point of view. We work hands-on with clients from concept to manufacturing, shaping products that feel considered, memorable, and worth keeping.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past Designs Carousel -->
+  <section class="section">
+    <div class="shell">
+      <span class="eyebrow section-eyebrow">02 / Selected Work</span>
+      <h2 style="margin-top:12px;">Past designs</h2>
+      <p style="font-size:17px;color:var(--lilac-text);max-width:560px;line-height:1.6;margin-bottom:32px;">A selection of packaging, product, and apparel work from the studio.</p>
+      <div class="carousel-wrap">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-item">
+            <img src="client-logos/hampton-canvas-cart-bag.jpg" alt="Golf Bags" onerror="this.parentElement.classList.add('placeholder');this.style.display='none';">
+            <span class="carousel-item-label">Golf Bags</span>
+          </div>
+          <div class="carousel-item">
+            <img src="client-logos/hampton-stand-bag.jpg" alt="Hampton Stand Bag" onerror="this.parentElement.classList.add('placeholder');this.style.display='none';">
+            <span class="carousel-item-label">Hampton Stand Bag</span>
+          </div>
+          <div class="carousel-item">
+            <img src="client-logos/golf-tees.jpg" alt="Golf Tees" onerror="this.parentElement.classList.add('placeholder');this.style.display='none';">
+            <span class="carousel-item-label">Golf Tees</span>
+          </div>
+          <div class="carousel-item placeholder">
+            <span class="carousel-item-label">Custom Bags &amp; Backpacks</span>
+          </div>
+          <div class="carousel-item placeholder">
+            <span class="carousel-item-label">Leather Jackets</span>
+          </div>
+          <div class="carousel-item placeholder">
+            <span class="carousel-item-label">Clothing &amp; Corsets</span>
+          </div>
+          <div class="carousel-item placeholder" style="display:none;">
+            <span class="carousel-item-label">Latex &amp; Carnival Costumes</span>
+          </div>
+          <div class="carousel-item placeholder" style="display:none;">
+            <span class="carousel-item-label">Jewelry</span>
+          </div>
+          <div class="carousel-item placeholder" style="display:none;">
+            <span class="carousel-item-label">Hat Boxes</span>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-buttons">
+            <button class="carousel-btn" id="carouselPrev" onclick="scrollCarousel(-1)" aria-label="Previous">&#8592;</button>
+            <button class="carousel-btn" id="carouselNext" onclick="scrollCarousel(1)" aria-label="Next">&#8594;</button>
+          </div>
+          <a class="see-more" href="#" onclick="navigate('work');return false;">See more &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Designs Featured In -->
+  <section class="featured-in">
+    <div class="shell">
+      <div class="lilac-card">
+        <h3>Designs Featured In</h3>
+        <div class="featured-logos">
+          <div class="featured-logo">
+            <img src="client-logos/dicks.png" alt="Dick's">
+          </div>
+          <div class="featured-logo">
+            <img src="client-logos/pga.png" alt="PGA Tour Superstore">
+          </div>
+          <div class="featured-logo">
+            <img src="client-logos/drummonds.png" alt="Drummond's">
+          </div>
+          <div class="featured-logo">
+            <img src="client-logos/wildhats.png" alt="Wild Hats">
+          </div>
+          <div class="featured-logo">
+            <img src="client-logos/walmart.png" alt="Walmart">
+          </div>
+          <div class="featured-logo">
+            <img src="client-logos/canadiantire.png" alt="Canadian Tire">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="shell">
+      <div class="lilac-card">
+        <span class="eyebrow section-eyebrow" style="color:var(--purple);opacity:0.5;">03 / Services</span>
+        <h2 style="margin-top:12px;color:var(--purple);">Full Suite Design Service Offerings</h2>
+        <div class="services-accordion">
+          <div class="accordion-item" id="svc-home-1">
+            <div class="accordion-header" onclick="toggleService('home-1')">
+              <span class="accordion-num">01</span>
+              <span class="accordion-title">Packaging Projects</span>
+              <span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content">
+              <p>End-to-end design from conceptualization to manufacturing. Full-service design firm.</p>
+            </div>
+          </div>
+          <div class="accordion-item" id="svc-home-2">
+            <div class="accordion-header" onclick="toggleService('home-2')">
+              <span class="accordion-num">02</span>
+              <span class="accordion-title">Product Design</span>
+              <span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content">
+              <p>Creating samples, prototypes, and manufacturing at scale.</p>
+            </div>
+          </div>
+          <div class="accordion-item" id="svc-home-3">
+            <div class="accordion-header" onclick="toggleService('home-3')">
+              <span class="accordion-num">03</span>
+              <span class="accordion-title">Prototype Incubation</span>
+              <span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content">
+              <p>Clients pitch ideas, Ace develops samples and either partners to manufacture or hands off with a roadmap.</p>
+            </div>
+          </div>
+          <div class="accordion-item" id="svc-home-4">
+            <div class="accordion-header" onclick="toggleService('home-4')">
+              <span class="accordion-num">04</span>
+              <span class="accordion-title">Underperforming Product Fixing</span>
+              <span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content">
+              <p>Consulting on why a product isn't selling, then redesigning and fixing it. End-to-end or A to B depending on scope.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="shell">
+      <h1>Ready to uplevel your product?</h1>
+      <p>Every project starts with a conversation. Share what you're building and we'll figure out the right scope together.</p>
+      <a class="pill white" href="#" onclick="navigate('contact');return false;">Get in touch &#8594;</a>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== WORK ====================== -->
+<div data-page="work">
+  <section class="page-header">
+    <div class="shell">
+      <span class="eyebrow">Work</span>
+      <h1>Selected Work</h1>
+      <p>A selection of packaging, product, and creative direction work from the studio. From golf accessories to apparel and everything in between.</p>
+    </div>
+  </section>
+  <section style="padding-bottom:0;">
+    <div class="shell">
+      <div class="filter-pills">
+        <button class="filter-pill active" onclick="filterWork('all',this)">All</button>
+        <button class="filter-pill" onclick="filterWork('packaging',this)">Packaging</button>
+        <button class="filter-pill" onclick="filterWork('product',this)">Product</button>
+        <button class="filter-pill" onclick="filterWork('brand',this)">Brand</button>
+        <button class="filter-pill" onclick="filterWork('concept',this)">Concept</button>
+        <button class="filter-pill" onclick="filterWork('creative',this)">Creative Direction</button>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top:20px;">
+    <div class="shell">
+      <div class="work-grid" id="workGrid">
+        <div class="work-card" data-cat="packaging">
+          <div class="work-card-img"><img src="client-logos/hampton-canvas-cart-bag.jpg" alt="" onerror="this.style.display='none';"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Packaging</div>
+            <div class="work-card-title">Golf Bags</div>
+            <div class="work-card-desc">Canvas cart bag design for Hampton.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="product">
+          <div class="work-card-img"><img src="client-logos/hampton-stand-bag.jpg" alt="" onerror="this.style.display='none';"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Product</div>
+            <div class="work-card-title">Hampton Stand Bag</div>
+            <div class="work-card-desc">Stand bag design with custom hardware.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="product">
+          <div class="work-card-img"><img src="client-logos/golf-tees.jpg" alt="" onerror="this.style.display='none';"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Product</div>
+            <div class="work-card-title">Golf Tees</div>
+            <div class="work-card-desc">Custom tee design and packaging system.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="product">
+          <div class="work-card-img"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Product</div>
+            <div class="work-card-title">Custom Bags &amp; Backpacks</div>
+            <div class="work-card-desc">Bespoke bag design for retail and promo.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="creative">
+          <div class="work-card-img"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Creative Direction</div>
+            <div class="work-card-title">Leather Jackets</div>
+            <div class="work-card-desc">Leather jacket design and production.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="creative">
+          <div class="work-card-img"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Creative Direction</div>
+            <div class="work-card-title">Clothing &amp; Corsets</div>
+            <div class="work-card-desc">Structured apparel and corsetry.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="concept">
+          <div class="work-card-img"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Concept</div>
+            <div class="work-card-title">Latex &amp; Carnival Costumes</div>
+            <div class="work-card-desc">Carnival costume design and fabrication.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="brand">
+          <div class="work-card-img"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Brand</div>
+            <div class="work-card-title">Jewelry</div>
+            <div class="work-card-desc">Jewelry design and brand packaging.</div>
+          </div>
+        </div>
+        <div class="work-card" data-cat="packaging">
+          <div class="work-card-img"></div>
+          <div class="work-card-body">
+            <div class="work-card-cat">Packaging</div>
+            <div class="work-card-title">Hat Boxes</div>
+            <div class="work-card-desc">Custom hat box packaging for Wild Hats.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== CASE STUDY ====================== -->
+<div data-page="case-study">
+  <section class="case-hero">
+    <div class="shell">
+      <span class="eyebrow">Case Study</span>
+      <h1>Wild Hat Boxes</h1>
+      <div class="case-meta">
+        <div class="case-meta-item"><span class="label">Client</span><span class="val">Wild Hats</span></div>
+        <div class="case-meta-item"><span class="label">Year</span><span class="val">2025</span></div>
+        <div class="case-meta-item"><span class="label">Category</span><span class="val">Packaging</span></div>
+        <div class="case-meta-item"><span class="label">Role</span><span class="val">Design &amp; Production</span></div>
+      </div>
+    </div>
+  </section>
+  <div class="shell"><div class="case-img-block"></div></div>
+  <section class="case-section">
+    <div class="shell">
+      <h2>Brief</h2>
+      <p>Wild Hats needed packaging that could match the personality of their headwear. The boxes had to protect structured hats while feeling like an object worth keeping.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <div class="shell">
+      <h2>Direction</h2>
+      <p>The direction leaned into the brand's unusual character. Deep tones, tactile materials, and a form that opened like a keepsake rather than a shipping container.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <div class="shell">
+      <h2>System</h2>
+      <p>A modular box system was developed to accommodate multiple hat silhouettes within a single outer form, reducing SKU complexity while maintaining a premium unboxing experience.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <div class="shell">
+      <h2>Development</h2>
+      <p>Prototypes were iterated across three rounds, refining the interior cradle, closure mechanism, and exterior print finish before finalizing tooling.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <div class="shell">
+      <h2>Final Result</h2>
+      <p>The final box shipped with a textured exterior, a magnetic closure, and an interior cradle that held the hat shape without crushing the brim. The packaging became part of the product experience.</p>
+    </div>
+  </section>
+  <div class="shell"><div class="case-img-block"></div></div>
+  <section class="case-credits">
+    <div class="shell">
+      <h2>Credits</h2>
+      <div class="credits-list">
+        <div class="credit-row"><span class="label">Client</span>Wild Hats</div>
+        <div class="credit-row"><span class="label">Design</span>Ace Designs</div>
+        <div class="credit-row"><span class="label">Category</span>Packaging</div>
+        <div class="credit-row"><span class="label">Year</span>2025</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== SERVICES ====================== -->
+<div data-page="services">
+  <div class="services-page">
+    <section class="page-header">
+      <div class="shell">
+        <span class="eyebrow">Services</span>
+        <h1>Service Offerings</h1>
+        <p>Ace Designs is a full-service design firm working hands-on with clients ranging from small businesses to large consumer brands.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="shell">
+        <div class="lilac-card">
+          <span class="eyebrow" style="color:var(--purple);opacity:0.5;">Services</span>
+          <h2 style="margin-top:12px;color:var(--purple);">Full Suite Design Service Offerings</h2>
+          <div class="services-accordion">
+            <div class="accordion-item" id="svc-services-1">
+              <div class="accordion-header" onclick="toggleService('services-1')">
+                <span class="accordion-num">01</span>
+                <span class="accordion-title">Packaging Projects</span>
+                <span class="accordion-toggle">+</span>
+              </div>
+              <div class="accordion-content">
+                <p>End-to-end design from conceptualization to manufacturing. Full-service design firm.</p>
+              </div>
+            </div>
+            <div class="accordion-item" id="svc-services-2">
+              <div class="accordion-header" onclick="toggleService('services-2')">
+                <span class="accordion-num">02</span>
+                <span class="accordion-title">Product Design</span>
+                <span class="accordion-toggle">+</span>
+              </div>
+              <div class="accordion-content">
+                <p>Creating samples, prototypes, and manufacturing at scale.</p>
+              </div>
+            </div>
+            <div class="accordion-item" id="svc-services-3">
+              <div class="accordion-header" onclick="toggleService('services-3')">
+                <span class="accordion-num">03</span>
+                <span class="accordion-title">Prototype Incubation</span>
+                <span class="accordion-toggle">+</span>
+              </div>
+              <div class="accordion-content">
+                <p>Clients pitch ideas, Ace develops samples and either partners to manufacture or hands off with a roadmap.</p>
+              </div>
+            </div>
+            <div class="accordion-item" id="svc-services-4">
+              <div class="accordion-header" onclick="toggleService('services-4')">
+                <span class="accordion-num">04</span>
+                <span class="accordion-title">Underperforming Product Fixing</span>
+                <span class="accordion-toggle">+</span>
+              </div>
+              <div class="accordion-content">
+                <p>Consulting on why a product isn't selling, then redesigning and fixing it. End-to-end or A to B depending on scope.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta">
+      <div class="shell">
+        <h1>Ready to uplevel your product?</h1>
+        <p>Every project starts with a conversation. Share what you're building and we'll figure out the right scope together.</p>
+        <a class="pill white" href="#" onclick="navigate('contact');return false;">Get in touch &#8594;</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ====================== ABOUT ====================== -->
+<div data-page="about">
+  <section class="about-opening">
+    <div class="shell">
+      <span class="eyebrow">About</span>
+      <h1>Design that makes an impression.</h1>
+    </div>
+  </section>
+  <section class="about-section">
+    <div class="shell">
+      <div class="lilac-card about-card">
+        <span class="eyebrow" style="color:var(--purple);opacity:0.5;">01 / Our approach</span>
+        <h2>Our approach</h2>
+        <p>Ace Designs is a founder-led design firm focused on packaging and product design. We work with large businesses and individuals to turn ideas into considered, memorable products and packaging. Our approach is personal and hands-on. You work directly with Ace, the founder, to define what the project needs, whether that's a packaging concept, a product design, a sample or prototype, or support taking an idea further. Ace's design experience spans golf products, packaging, apparel, accessories, and costumes. That range informs a point of view drawn to the unusual and the details that make something feel worth keeping.</p>
+      </div>
+    </div>
+  </section>
+  <section class="about-section">
+    <div class="shell">
+      <div class="lilac-card">
+        <span class="eyebrow" style="color:var(--purple);opacity:0.5;">02 / Principles</span>
+        <h2 style="color:var(--purple);margin-bottom:0;">Principles</h2>
+        <div class="principles-scroll">
+          <div class="principle-card">
+            <div class="principle-num">01</div>
+            <div class="principle-title">Desire matters</div>
+            <div class="principle-desc">Design should make someone want to hold it, keep it, remember it.</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-num">02</div>
+            <div class="principle-title">Details matter</div>
+            <div class="principle-desc">The inside of a lid, the weight of a box, the texture of a material.</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-num">03</div>
+            <div class="principle-title">Physical objects are brand experiences</div>
+            <div class="principle-desc">Packaging is not afterthought. The product and its packaging speak the same language.</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-num">04</div>
+            <div class="principle-title">Design should survive outside a moodboard</div>
+            <div class="principle-desc">It should work in a store, in someone's hand, in a photo, six months later.</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-num">05</div>
+            <div class="principle-title">Form and identity speak the same language</div>
+            <div class="principle-desc">Shape, material, graphics, and brand are one system, not separate layers.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cta">
+    <div class="shell">
+      <h1>Have an idea or an existing product you'd like to rethink?</h1>
+      <p>Every project starts with a conversation.</p>
+      <a class="pill white" href="#" onclick="navigate('contact');return false;">Tell us about your project &#8594;</a>
+    </div>
+  </section>
+</div>
+
+<!-- ====================== CONTACT ====================== -->
+<div data-page="contact">
+  <section class="page-header">
+    <div class="shell">
+      <span class="eyebrow">Contact</span>
+      <h1>Tell us what you're making.</h1>
+      <p>Every project starts with a conversation. Share what you're building and we'll figure out the right scope together.</p>
+    </div>
+  </section>
+  <section>
+    <div class="shell">
+      <form class="contact-form" onsubmit="event.preventDefault();alert('Thank you. Your project details have been captured. We will be in touch.');return false;">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-field">
+            <label for="f-company">Company / Brand</label>
+            <input type="text" id="f-company" name="company" placeholder="Company or brand name">
+          </div>
+          <div class="form-field">
+            <label for="f-social">Website / Social</label>
+            <input type="text" id="f-social" name="social" placeholder="Website or social handle">
+          </div>
+          <div class="form-field full">
+            <label for="f-create">What are you looking to create?</label>
+            <input type="text" id="f-create" name="create" placeholder="Brief description of what you need">
+          </div>
+          <div class="form-field">
+            <label for="f-type">Project type</label>
+            <select id="f-type" name="type">
+              <option value="">Select...</option>
+              <option>Brand Identity</option>
+              <option>Packaging</option>
+              <option>Product Design</option>
+              <option>Creative Direction</option>
+              <option>Multiple / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-stage">Project stage</label>
+            <select id="f-stage" name="stage">
+              <option value="">Select...</option>
+              <option>Idea</option>
+              <option>Early development</option>
+              <option>Existing brand</option>
+              <option>Existing product</option>
+              <option>Ready for redesign</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-timeline">Target timeline</label>
+            <input type="text" id="f-timeline" name="timeline" placeholder="When do you need this?">
+          </div>
+          <div class="form-field">
+            <label for="f-budget">Estimated budget</label>
+            <input type="text" id="f-budget" name="budget" placeholder="Budget range">
+          </div>
+          <div class="form-field full">
+            <label for="f-desc">Project description</label>
+            <textarea id="f-desc" name="description" placeholder="Tell us about the project in more detail."></textarea>
+          </div>
+          <div class="form-field full">
+            <label for="f-referral">How did you hear about Ace?</label>
+            <input type="text" id="f-referral" name="referral" placeholder="How did you find us?">
+          </div>
+        </div>
+        <button type="submit" class="pill white form-submit">Send project</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo/ace-logo.png" alt="Ace Designs">
+        <p>Ace Designs is a founder-led design firm for distinctive packaging and products. Packaging with presence. Products with personality.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#" onclick="navigate('home');return false;">Home</a></li>
+          <li><a href="#" onclick="navigate('work');return false;">Work</a></li>
+          <li><a href="#" onclick="navigate('services');return false;">Services</a></li>
+          <li><a href="#" onclick="navigate('about');return false;">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li>Instagram: @acedesignsfirm</li>
+          <li>Email: hello@acedesigns.studio</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li>Legal</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Ace Designs. All rights reserved.</span>
+      <span>Packaging with presence &#10022; Products with personality</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav: show when hovering near top while scrolled down
+(function() {
+  var stickyNav = document.getElementById('stickyNav');
+  var hoverZone = document.getElementById('hoverZone');
+  var hideTimer = null;
+  function showNav() {
+    if (window.scrollY > 100) {
+      stickyNav.classList.add('triggered');
+    }
+    clearTimeout(hideTimer);
+  }
+  function hideNav() {
+    hideTimer = setTimeout(function() {
+      stickyNav.classList.remove('triggered');
+    }, 300);
+  }
+  document.addEventListener('mousemove', function(e) {
+    if (e.clientY < 40) { showNav(); }
+    else if (e.clientY > 120) { hideNav(); }
+  });
+  // Also show on hover over the hoverZone
+  hoverZone.addEventListener('mouseenter', showNav);
+  stickyNav.addEventListener('mouseleave', hideNav);
+  stickyNav.addEventListener('mouseenter', function() { clearTimeout(hideTimer); });
+})();
+
+var pages = ['home','work','case-study','services','about','contact'];
+var titles = {
+  home: 'Ace Designs | Packaging & Product Design',
+  work: 'Selected Work | Ace Designs',
+  'case-study': 'Case Study | Ace Designs',
+  services: 'Services | Ace Designs',
+  about: 'About | Ace Designs',
+  contact: 'Contact | Ace Designs'
+};
+
+function navigate(page) {
+  if (pages.indexOf(page) === -1) page = 'home';
+  document.querySelectorAll('[data-page]').forEach(function(el) {
+    el.classList.remove('active');
+  });
+  var target = document.querySelector('[data-page="' + page + '"]');
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.nav-links > a').forEach(function(a) {
+    a.removeAttribute('aria-current');
+  });
+  var navMap = { 'Work':'work', 'Services':'services', 'About':'about' };
+  document.querySelectorAll('.nav-links > a').forEach(function(a) {
+    var txt = a.textContent.trim();
+    if (navMap[txt] === page) a.setAttribute('aria-current','page');
+  });
+  document.title = titles[page] || titles.home;
+  var nl = document.getElementById('navLinks');
+  if (nl) nl.classList.remove('open');
+  var mt = document.getElementById('menuToggle');
+  if (mt) mt.setAttribute('aria-expanded','false');
+  window.scrollTo(0, 0);
+}
+
+function toggleService(id) {
+  var item = document.getElementById('svc-' + id);
+  if (item) item.classList.toggle('open');
+}
+
+var carouselOffset = 0;
+function scrollCarousel(dir) {
+  var track = document.getElementById('carouselTrack');
+  if (!track) return;
+  var items = track.querySelectorAll('.carousel-item');
+  var visible = window.innerWidth > 768 ? 3 : 1;
+  var max = Math.max(0, items.length - visible);
+  carouselOffset = Math.max(0, Math.min(max, carouselOffset + dir));
+  items.forEach(function(item, i) {
+    item.style.display = (i >= carouselOffset && i < carouselOffset + visible) ? '' : 'none';
+  });
+  var prev = document.getElementById('carouselPrev');
+  var next = document.getElementById('carouselNext');
+  if (prev) prev.disabled = carouselOffset === 0;
+  if (next) next.disabled = carouselOffset >= max;
+}
+
+function filterWork(cat, btn) {
+  document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('#workGrid .work-card').forEach(function(card) {
+    if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+document.getElementById('menuToggle').addEventListener('click', function() {
+  var nl = document.getElementById('navLinks');
+  var open = nl.classList.toggle('open');
+  this.setAttribute('aria-expanded', String(open));
+});
+
+document.addEventListener('click', function(e) {
+  var stickyToggle = document.getElementById('stickyMenuToggle');
+  if (stickyToggle && e.target === stickyToggle) {
+    var snl = stickyToggle.closest('.sticky-nav').querySelector('.s-nav-links');
+    if (snl) {
+      snl.style.display = snl.style.display === 'flex' ? '' : 'flex';
+      snl.style.position = 'absolute';
+      snl.style.top = '64px';
+      snl.style.left = '24px';
+      snl.style.right = '24px';
+      snl.style.background = 'var(--purple-deep)';
+      snl.style.border = '1px solid var(--line-dark)';
+      snl.style.borderRadius = '20px';
+      snl.style.padding = '24px';
+      snl.style.flexDirection = 'column';
+      snl.style.gap = '18px';
+      snl.style.zIndex = '201';
+    }
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var nl = document.getElementById('navLinks');
+    if (nl) nl.classList.remove('open');
+    var mt = document.getElementById('menuToggle');
+    if (mt) mt.setAttribute('aria-expanded','false');
+  }
+});
+
+(function() {
+  var track = document.getElementById('carouselTrack');
+  if (!track) return;
+  var items = track.querySelectorAll('.carousel-item');
+  var visible = window.innerWidth > 768 ? 3 : 1;
+  items.forEach(function(item, i) {
+    if (i >= visible) item.style.display = 'none';
+  });
+  var prev = document.getElementById('carouselPrev');
+  var next = document.getElementById('carouselNext');
+  if (prev) prev.disabled = true;
+  var max = Math.max(0, items.length - visible);
+  if (next) next.disabled = max === 0;
+})();
+</script>
+</body>
+</html>

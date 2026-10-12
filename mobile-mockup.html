@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ace Designs — Mobile Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple: #27063B;
+    --purple-deep: #1C042B;
+    --black: #111111;
+    --white: #FFFFFF;
+    --lilac: #E2D6ED;
+    --lilac-text: #BDA8CF;
+    --lilac-card: #EDE6F5;
+    --line-dark: rgba(255,255,255,0.08);
+  }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+    flex-wrap: wrap;
+  }
+  .phone-frame {
+    width: 390px;
+    background: var(--purple);
+    border-radius: 40px;
+    overflow: hidden;
+    border: 8px solid #222;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    position: relative;
+    min-height: 200px;
+  }
+  .phone-label {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .phone-wrap { display: flex; flex-direction: column; }
+  
+  /* Shared mobile styles */
+  .m-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .m-brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .m-brand-icon {
+    width: 32px; height: 32px;
+    background: rgba(226,214,237,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--lilac);
+  }
+  .m-hamburger {
+    font-size: 22px;
+    color: var(--lilac);
+  }
+  .m-hero {
+    padding: 24px 20px 32px;
+  }
+  .m-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lilac-text);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .m-h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 38px;
+    line-height: .95;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .m-h1 em { font-style: italic; font-weight: 400; }
+  .m-tagline {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--lilac-text);
+    margin-bottom: 20px;
+  }
+  .m-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .m-btn {
+    padding: 12px 22px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+  }
+  .m-btn-primary { background: var(--white); color: var(--purple); }
+  .m-btn-outline { border: 1px solid var(--lilac-text); color: var(--white); }
+  .m-hero-frame {
+    width: 120px;
+    height: 150px;
+    border: 1px solid rgba(226,214,237,0.25);
+    border-radius: 52% 52% 8px 8px;
+    transform: rotate(6deg);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 0.6;
+  }
+  .m-hero-frame::after {
+    content: 'A';
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 48px;
+    color: var(--lilac);
+    transform: rotate(-6deg);
+  }
+  .m-black-bar {
+    background: var(--black);
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .m-black-bar-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .m-black-bar-sub {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--lilac-text);
+    margin-top: 4px;
+  }
+  .m-section {
+    padding: 56px 20px;
+  }
+  .m-section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lilac-text);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .m-h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .m-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--lilac-text);
+    margin-bottom: 24px;
+  }
+  .m-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    margin-bottom: 16px;
+  }
+  .m-carousel-item {
+    flex: 0 0 240px;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(226,214,237,0.08), rgba(226,214,237,0.02));
+    border: 1px solid var(--line-dark);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .m-carousel-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    color: var(--white);
+  }
+  .m-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .m-carousel-btns { display: flex; gap: 8px; }
+  .m-carousel-btn {
+    width: 40px; height: 40px;
+    border-radius: 999px;
+    background: var(--lilac);
+    color: var(--purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .m-see-more {
+    font-size: 13px;
+    color: var(--lilac);
+  }
+  .m-lilac-card {
+    background: var(--lilac-card);
+    border-radius: 24px;
+    padding: 28px 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+  .m-lilac-title {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--purple);
+    opacity: 0.5;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .m-logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: center;
+    justify-items: center;
+  }
+  .m-logo {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .m-logo-box {
+    background: rgba(39,6,59,0.06);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .m-accordion-item {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(39,6,59,0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .m-accordion-item:last-child { border-bottom: none; }
+  .m-acc-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    color: var(--purple);
+    opacity: 0.3;
+    font-weight: 600;
+  }
+  .m-acc-title {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--purple);
+  }
+  .m-acc-toggle {
+    width: 32px; height: 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(39,6,59,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    font-size: 18px;
+  }
+  .m-cta {
+    padding: 56px 20px;
+    text-align: center;
+  }
+  .m-cta h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .m-cta p {
+    font-size: 15px;
+    color: var(--lilac-text);
+    margin-bottom: 24px;
+  }
+  .m-cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 16px;
+    background: var(--white);
+    color: var(--purple);
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .m-footer {
+    background: var(--purple-deep);
+    padding: 40px 20px 24px;
+  }
+  .m-footer-brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .m-footer-desc {
+    font-size: 13px;
+    color: var(--lilac-text);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .m-footer-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .m-footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--lilac-text);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .m-footer-col a {
+    display: block;
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 8px;
+    text-decoration: none;
+  }
+  .m-footer-col p {
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .m-footer-bottom {
+    border-top: 1px solid var(--line-dark);
+    padding-top: 16px;
+    font-size: 11px;
+    color: var(--lilac-text);
+    opacity: 0.5;
+  }
+  
+  /* Annotation labels */
+  .annotation {
+    position: absolute;
+    background: #6366f1;
+    color: white;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  .annotation::after {
+    content: '';
+    position: absolute;
+    border: 6px solid transparent;
+  }
+</style>
+</head>
+<body>
+
+<!-- Phone 1: Hero + Nav -->
+<div class="phone-wrap">
+  <div class="phone-label">01 — Hero & Nav</div>
+  <div class="phone-frame">
+    <div class="m-nav">
+      <div class="m-brand">
+        <div class="m-brand-icon">A</div>
+        Ace Designs
+      </div>
+      <div class="m-hamburger">☰</div>
+    </div>
+    <div class="m-hero">
+      <span class="m-eyebrow">Independent design. Distinctive possibilities.</span>
+      <h1 class="m-h1">Packaging with <em>presence.</em><br>Products with <em>personality.</em></h1>
+      <p class="m-tagline">A founder-led design studio for packaging and products that make an impression before the box opens.</p>
+      <div class="m-btns">
+        <span class="m-btn m-btn-primary">Start a Project</span>
+        <span class="m-btn m-btn-outline">View Work</span>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <div class="m-hero-frame"></div>
+      </div>
+    </div>
+    <div class="m-black-bar">
+      <div class="m-black-bar-text">Unusual ✦ Intimate ✦ Unforgettable</div>
+      <div class="m-black-bar-sub">Make an impression before the box opens.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Phone 2: Brand + Carousel -->
+<div class="phone-wrap">
+  <div class="phone-label">02 — Brand & Past Designs</div>
+  <div class="phone-frame">
+    <div class="m-section">
+      <span class="m-section-eyebrow">01 / Brand</span>
+      <h2 class="m-h2">Design that earns attention.</h2>
+      <p class="m-body">Ace Designs is a studio for packaging and product design with a point of view. We work hands-on with clients from concept to manufacturing, shaping products that feel considered, memorable, and worth keeping.</p>
+    </div>
+    <div class="m-section" style="padding-top: 0;">
+      <span class="m-section-eyebrow">02 / Selected Work</span>
+      <h2 class="m-h2">Past designs</h2>
+      <p class="m-body" style="margin-bottom:20px">A selection of packaging, product, and apparel work from the studio.</p>
+      <div class="m-carousel">
+        <div class="m-carousel-item"><span class="m-carousel-label">Golf Bags</span></div>
+        <div class="m-carousel-item"><span class="m-carousel-label">Hampton Stand Bag</span></div>
+        <div class="m-carousel-item"><span class="m-carousel-label">Golf Tees</span></div>
+      </div>
+      <div class="m-carousel-controls">
+        <div class="m-carousel-btns">
+          <div class="m-carousel-btn">‹</div>
+          <div class="m-carousel-btn">›</div>
+        </div>
+        <span class="m-see-more">See more →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phone 3: Featured In + Services -->
+<div class="phone-wrap">
+  <div class="phone-label">03 — Featured In & Services</div>
+  <div class="phone-frame">
+    <div class="m-section">
+      <div class="m-lilac-card">
+        <div class="m-lilac-title">Designs Featured In</div>
+        <div class="m-logos">
+          <div class="m-logo m-logo-box">DICK'S</div>
+          <div class="m-logo m-logo-box">PGA TOUR</div>
+          <div class="m-logo m-logo-box">Drummond</div>
+          <div class="m-logo m-logo-box">WILD HATS</div>
+          <div class="m-logo m-logo-box">Walmart</div>
+          <div class="m-logo m-logo-box">Canadian Tire</div>
+        </div>
+      </div>
+    </div>
+    <div class="m-section" style="padding-top:0;">
+      <div class="m-lilac-card">
+        <div class="m-lilac-title">03 / Services</div>
+        <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;color:var(--purple);margin-bottom:16px;">Full Suite Design Service Offerings</h2>
+        <div>
+          <div class="m-accordion-item">
+            <span class="m-acc-num">01</span>
+            <span class="m-acc-title">Packaging Projects</span>
+            <span class="m-acc-toggle">+</span>
+          </div>
+          <div class="m-accordion-item">
+            <span class="m-acc-num">02</span>
+            <span class="m-acc-title">Product Design</span>
+            <span class="m-acc-toggle">+</span>
+          </div>
+          <div class="m-accordion-item">
+            <span class="m-acc-num">03</span>
+            <span class="m-acc-title">Prototype Incubation</span>
+            <span class="m-acc-toggle">+</span>
+          </div>
+          <div class="m-accordion-item">
+            <span class="m-acc-num">04</span>
+            <span class="m-acc-title">Underperforming Product Fixing</span>
+            <span class="m-acc-toggle">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Phone 4: CTA + Footer -->
+<div class="phone-wrap">
+  <div class="phone-label">04 — CTA & Footer</div>
+  <div class="phone-frame">
+    <div class="m-cta">
+      <h1>Ready to uplevel your product?</h1>
+      <p>Every project starts with a conversation.</p>
+      <span class="m-cta-btn">Get in touch →</span>
+    </div>
+    <div class="m-footer">
+      <div class="m-footer-brand">Ace Designs</div>
+      <div class="m-footer-desc">A founder-led design firm for distinctive packaging and products.</div>
+      <div class="m-footer-cols">
+        <div class="m-footer-col">
+          <h4>Navigate</h4>
+          <a>Home</a>
+          <a>Work</a>
+          <a>Services</a>
+          <a>About</a>
+        </div>
+        <div class="m-footer-col">
+          <h4>Connect</h4>
+          <p>Instagram: @acedesignsfirm</p>
+          <p>Email: hello@acedesigns.studio</p>
+        </div>
+      </div>
+      <div class="m-footer-bottom">© 2025 Ace Designs. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
