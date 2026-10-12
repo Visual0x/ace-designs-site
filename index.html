@@ -4,6 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Ace Designs is a founder-led design firm for distinctive packaging and products.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16.png">
+<link rel="apple-touch-icon" sizes="256x256" href="assets/logo/favicon-256.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ace Designs | Packaging & Product Design">
+<meta property="og:description" content="A founder-led design firm for distinctive packaging and products. Packaging with presence. Products with personality.">
+<meta property="og:image" content="assets/logo/og-preview.jpg">
+<meta property="og:url" content="https://acedesigns.studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ace Designs | Packaging & Product Design">
+<meta name="twitter:description" content="A founder-led design firm for distinctive packaging and products. Packaging with presence. Products with personality.">
+<meta name="twitter:image" content="assets/logo/og-preview.jpg">
 <title>Ace Designs | Packaging & Product Design</title>
 <style>
 @font-face {
@@ -189,6 +202,7 @@ em { font-style: italic; }
   line-height: .9;
   letter-spacing: -2px;
 }
+.hero h1 .br-desktop { display: inline; }
 .hero h1 em { font-weight: 400; }
 .hero-tagline {
   font-size: 15px;
@@ -683,6 +697,7 @@ em { font-style: italic; }
   .hero-frame { grid-column: 1; grid-row: 2; max-width: 220px; margin: 0 auto; }
   .hero-bottom { grid-column: 1; grid-row: 3; }
   .hero h1 { font-size: 36px; }
+  .hero h1 .br-desktop { display: none; }
   .black-bar .shell { flex-direction: column; gap: 12px; text-align: center; }
   .carousel-track {
     grid-template-columns: repeat(5, 85%);
@@ -794,7 +809,7 @@ em { font-style: italic; }
       <div class="hero-grid">
         <div class="hero-top">
           <span class="eyebrow">Independent design. Distinctive possibilities.</span>
-          <h1 style="margin-top:8px;">Packaging with <em>presence.</em><br>Products with <em>personality.</em></h1>
+          <h1 style="margin-top:8px;">Packaging with<br class="br-desktop"><em>presence.</em><br>Products with<br class="br-desktop"><em>personality.</em></h1>
         </div>
         <div class="hero-frame">
           <img src="assets/logo/ace-monogram.png" alt="Ace monogram">
